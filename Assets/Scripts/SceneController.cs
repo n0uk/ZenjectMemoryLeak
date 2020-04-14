@@ -26,8 +26,12 @@ public class SceneController : MonoBehaviour
 
     private IEnumerator TestCoroutine()
     {
-        yield return _sceneLoader.LoadSceneAsync(1, LoadSceneMode.Single);
-        yield return _sceneLoader.LoadSceneAsync(0, LoadSceneMode.Single);
+        for (var i = 0; i < 10; i++)
+        {
+            yield return _sceneLoader.LoadSceneAsync(1, LoadSceneMode.Single);
+            yield return _sceneLoader.LoadSceneAsync(0, LoadSceneMode.Single);
+        }
+
         yield return new WaitForSeconds(0.1f);
         GC.Collect();
         yield return new WaitForSeconds(0.1f);
